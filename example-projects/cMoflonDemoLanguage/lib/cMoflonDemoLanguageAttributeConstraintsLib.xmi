@@ -8,9 +8,35 @@
     prefix="cMoflonDemoLanguageAttributeConstraintsLib">
   <operationSpecifications
       constraintSpecifications="//@constraintSpecifications.0"
+      operationIdentifier="max">
+    <operationSpecifications
+        specification="$a$=$b$&lt;$c$?$c$:$b$"
+        adornmentString="FBB"/>
+    <parameterIDs
+        identifier="a"/>
+    <parameterIDs
+        identifier="b"/>
+    <parameterIDs
+        identifier="c"/>
+  </operationSpecifications>
+  <operationSpecifications
+      constraintSpecifications="//@constraintSpecifications.1"
+      operationIdentifier="min">
+    <operationSpecifications
+        specification="$a$=$b$&lt;$c$?$b$:$c$"
+        adornmentString="FBB"/>
+    <parameterIDs
+        identifier="a"/>
+    <parameterIDs
+        identifier="b"/>
+    <parameterIDs
+        identifier="c"/>
+  </operationSpecifications>
+  <operationSpecifications
+      constraintSpecifications="//@constraintSpecifications.2"
       operationIdentifier="evalHopcountConstr">
     <operationSpecifications
-        specification="cMoflonDemoLanguage.LStarKTCHelper.evaluateHopcountConstraint($a$, $b$, $c$, $d$)"
+        specification="lStarKtcAlgorithm_evaluateHopcountConstraint($a$, $b$, $c$, $d$)"
         adornmentString="BBBB"
         alwaysSuccessful="false"/>
     <parameterIDs
@@ -23,17 +49,17 @@
         identifier="d"/>
   </operationSpecifications>
   <operationSpecifications
-      constraintSpecifications="//@constraintSpecifications.1"
+      constraintSpecifications="//@constraintSpecifications.3"
       operationIdentifier="isWeightDefined">
     <operationSpecifications
-        specification="$a$ != -1.0"
+        specification="link_isWeightDefined($a$)"
         adornmentString="B"
         alwaysSuccessful="false"/>
     <parameterIDs
         identifier="a"/>
   </operationSpecifications>
   <operationSpecifications
-      constraintSpecifications="//@constraintSpecifications.2"
+      constraintSpecifications="//@constraintSpecifications.4"
       operationIdentifier="xor">
     <operationSpecifications
         specification="$a$ ^ $b$"
@@ -45,7 +71,7 @@
         identifier="b"/>
   </operationSpecifications>
   <operationSpecifications
-      constraintSpecifications="//@constraintSpecifications.3"
+      constraintSpecifications="//@constraintSpecifications.5"
       operationIdentifier="same">
     <operationSpecifications
         specification="$a$ == $b$"
@@ -58,6 +84,44 @@
   </operationSpecifications>
   <constraintSpecifications
       operationSpecificationGroup="//@operationSpecifications.0"
+      symbol="max">
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+  </constraintSpecifications>
+  <constraintSpecifications
+      operationSpecificationGroup="//@operationSpecifications.1"
+      symbol="min">
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+    <parameterTypes>
+      <type
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </parameterTypes>
+  </constraintSpecifications>
+  <constraintSpecifications
+      operationSpecificationGroup="//@operationSpecifications.2"
       symbol="evalHopcountConstr">
     <parameterTypes>
       <type
@@ -81,7 +145,7 @@
     </parameterTypes>
   </constraintSpecifications>
   <constraintSpecifications
-      operationSpecificationGroup="//@operationSpecifications.1"
+      operationSpecificationGroup="//@operationSpecifications.3"
       symbol="isWeightDefined">
     <parameterTypes>
       <type
@@ -90,7 +154,7 @@
     </parameterTypes>
   </constraintSpecifications>
   <constraintSpecifications
-      operationSpecificationGroup="//@operationSpecifications.2"
+      operationSpecificationGroup="//@operationSpecifications.4"
       symbol="xor">
     <parameterTypes>
       <type
@@ -104,7 +168,7 @@
     </parameterTypes>
   </constraintSpecifications>
   <constraintSpecifications
-      operationSpecificationGroup="//@operationSpecifications.3"
+      operationSpecificationGroup="//@operationSpecifications.5"
       symbol="=">
     <parameterTypes>
       <type
