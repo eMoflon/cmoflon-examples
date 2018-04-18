@@ -5,7 +5,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:org.moflon.sdm.constraints.operationspecification="platform:/plugin/org.moflon.sdm.constraints.operationspecification/model/Operationspecification.ecore"
-    prefix="CMoflonAdvancedDemo_CAttributeConstraintsLib">
+    prefix="CMoflonAdvancedDemoAttributeConstraintsLib">
   <operationSpecifications
       constraintSpecifications="//@constraintSpecifications.0"
       operationIdentifier="max">

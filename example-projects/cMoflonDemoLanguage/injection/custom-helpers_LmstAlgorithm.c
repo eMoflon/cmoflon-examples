@@ -1,16 +1,17 @@
-MEMB(memb_entries, TREEENTRY_T, MAX_MATCH_COUNT);
 LIST(list_tree_entries);
+
+LIST(list_duplicates);
 
 /**
  * Initializes the auxiliary data structures required by LMST
  */
-void lmstAlgorithm_init(LMSTALGORITHM_T* this) {
+bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
 	TREE_T* tree = (TREE_T*) malloc(sizeof(TREE_T));
+	if (tree == NULL) {
+		printf("ERROR[topologycontrol][LMST]: Could not allocate memory for tree\n");
+		return false;
+	}
 	tree->algo = this;
-
-	memb_init(&memb_entries);
-	tree->mem = &memb_entries;
-
 	list_init(list_tree_entries);
 
 	// add all nodes to list
@@ -30,9 +31,10 @@ void lmstAlgorithm_init(LMSTALGORITHM_T* this) {
 			}
 		}
 		if (!found) {
-			item_node = memb_alloc(&memb_entries);
+			item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
 			if (item_node == NULL) {
 				printf("ERROR[topologycontrol][LMST]: node list is full (%s:%d)\n", __FILE__, __LINE__);
+				return false;
 			} else {
 				item_node->node = item_neighbor->node1;
 				item_node->parent = NULL;
@@ -56,9 +58,10 @@ void lmstAlgorithm_init(LMSTALGORITHM_T* this) {
 			}
 		}
 		if (!found) {
-			item_node = memb_alloc(&memb_entries);
+			item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
 			if (item_node == NULL) {
 				printf("ERROR[topologycontrol][LMST]: node list is full (%s:%d)\n", __FILE__, __LINE__);
+				return false;
 			} else {
 				item_node->node = item_neighbor->node2;
 				item_node->parent = NULL;
@@ -74,6 +77,7 @@ void lmstAlgorithm_init(LMSTALGORITHM_T* this) {
 	}
 	tree->entries = list_tree_entries;
 	this->tree = tree;
+	return true;
 }
 
 /**
@@ -82,7 +86,7 @@ void lmstAlgorithm_init(LMSTALGORITHM_T* this) {
 void lmstAlgorithm_cleanup(LMSTALGORITHM_T* this) {
 	list_t entryList = this->tree->entries;
 	while(list_length(entryList) > 0) {
-		memb_free(this->tree->mem, list_pop(entryList));
+		free(list_pop(entryList));
 	}
 	free(this->tree);
 	this->tree = NULL;

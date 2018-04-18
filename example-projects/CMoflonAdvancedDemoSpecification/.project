@@ -10,14 +10,8 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.moflon.ide.core.runtime.builders.MetamodelBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.cmoflon.ide.core.runtime.natures.CMoflonMetamodelNature</nature>
-		<nature>org.moflon.ide.core.runtime.natures.MetamodelNature</nature>
 	</natures>
 </projectDescription>
