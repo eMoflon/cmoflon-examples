@@ -1,6 +1,3 @@
-typedef struct KTCALGORITHM_T KTCALGORITHM_T;
-typedef struct LSTARKTCALGORITHM_T LSTARKTCALGORITHM_T;
-
 // Forward declaration
 struct TREE_T;
 
