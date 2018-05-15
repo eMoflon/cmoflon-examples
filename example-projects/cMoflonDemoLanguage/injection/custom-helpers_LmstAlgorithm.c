@@ -1,7 +1,5 @@
 LIST(list_tree_entries);
 
-LIST(list_duplicates);
-
 /**
  * Initializes the auxiliary data structures required by LMST
  */
