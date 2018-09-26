@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: cMoflonDemoLanguage;singleton:=true
+Bundle-SymbolicName: CMoflonDemoLanguage;singleton:=true
 Bundle-Name: cMoflonDemoLanguage
 Bundle-Version: 0.0.1.qualifier
 Require-Bundle: org.eclipse.emf.ecore,
