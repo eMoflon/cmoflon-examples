@@ -4,90 +4,75 @@ LIST(list_tree_entries);
  * Initializes the auxiliary data structures required by LMST
  */
 static bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
-	TREE_T* tree = (TREE_T*) malloc(sizeof(TREE_T));
-	if (tree == NULL) {
-		printf("ERROR[topologycontrol][LMST]: Could not allocate memory for tree\n");
-		return false;
-	}
-	tree->algo = this;
-	list_init(list_tree_entries);
+  /*
+   * Init tree
+   */
+  TREE_T* tree = (TREE_T*) malloc(sizeof(TREE_T));
+  if (tree == NULL) {
+    printf("ERROR[topologycontrol-lmst]: Could not allocate memory for tree\n");
+    return false;
+  }
+  tree->algo = this;
+  list_init(list_tree_entries);
 
-	// add all nodes to list
-	LINK_T* item_neighbor;
-	for (item_neighbor = list_head(component_neighbordiscovery_neighbors());
-			item_neighbor != NULL;
-			item_neighbor = list_item_next(item_neighbor)) {
-		TREEENTRY_T *item_node;
-		bool found = false;
+  /*
+   * Add TreeEntries for all incident nodes node1/node2 of links in the neighborhoo
+   */
+  LINK_T* item_neighbor;
+  for (item_neighbor = list_head(component_neighbordiscovery_neighbors());
+       item_neighbor != NULL;
+       item_neighbor = list_item_next(item_neighbor)) {
+    TREEENTRY_T *item_node;
 
-		// check for node1
-		for (item_node = list_head(list_tree_entries); item_node != NULL;
-				item_node = list_item_next(item_node)) {
-			if (networkaddr_equal(item_neighbor->node1, item_node->node)) {
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
-			if (item_node == NULL) {
-				printf("ERROR[topologycontrol][LMST]: node list is full (%s:%d)\n", __FILE__, __LINE__);
-				return false;
-			} else {
-				item_node->node = item_neighbor->node1;
-				item_node->parent = NULL;
-				item_node->tree = tree;
-				if (networkaddr_equal(networkaddr_node_addr(),
-						item_neighbor->node1))
-					item_node->isInTree = true;
-				else
-					item_node->isInTree = false;
-				list_add(list_tree_entries, item_node);
-			}
-		}
+    unsigned char node_index;
+    for (node_index = 0; node_index < 2; ++node_index) {
+      NODE_T *neighbor_node = (node_index == 0) ? item_neighbor->node1 : item_neighbor->node2;
 
-		// check for node2
-		found = false;
-		for (item_node = list_head(list_tree_entries); item_node != NULL;
-				item_node = list_item_next(item_node)) {
-			if (networkaddr_equal(item_neighbor->node2, item_node->node)) {
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
-			if (item_node == NULL) {
-				printf("ERROR[topologycontrol][LMST]: node list is full (%s:%d)\n", __FILE__, __LINE__);
-				return false;
-			} else {
-				item_node->node = item_neighbor->node2;
-				item_node->parent = NULL;
-				item_node->tree = tree;
-				if (networkaddr_equal(networkaddr_node_addr(),
-						item_neighbor->node2))
-					item_node->isInTree = true;
-				else
-					item_node->isInTree = false;
-				list_add(list_tree_entries, item_node);
-			}
-		}
-	}
-	tree->entries = list_tree_entries;
-	this->tree = tree;
-	return true;
+      bool found = false;
+      // After this loop, found == true iff there is a TreeEntry for neighbor_node
+      for (item_node = list_head(list_tree_entries);
+           item_node != NULL && !found;
+           item_node = list_item_next(item_node)) {
+        found = networkaddr_equal(neighbor_node, item_node->node);
+      }
+
+      if (!found) {
+        item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
+        if (item_node == NULL) {
+          printf("ERROR[topologycontrol-lmst]: node list is full (%s:%d)\n", __FILE__, __LINE__);
+          return false;
+        } else {
+          item_node->node = neighbor_node;
+          item_node->parent = NULL;
+          item_node->tree = tree;
+          // The owner node of the local view is in the tree from the beginning, all other nodes are not.
+          item_node->isInTree = networkaddr_equal(networkaddr_node_addr(), neighbor_node));
+
+          list_add(list_tree_entries, item_node);
+        }
+      }
+    }
+  }
+  tree->entries = list_tree_entries;
+  this->tree = tree;
+  return true;
 }
 
 /**
  * Clears the auxiliary data structures required by LMST
  */
 static void lmstAlgorithm_cleanup(LMSTALGORITHM_T* this) {
+
+	// Free TreeEntries
 	list_t entryList = this->tree->entries;
 	while(list_length(entryList) > 0) {
 		free(list_pop(entryList));
 	}
+
+	// Free Tree
 	free(this->tree);
 	this->tree = NULL;
+
 }
 
 static NODE_T* lmstAlgorithm_getNode(LMSTALGORITHM_T* _this) {
