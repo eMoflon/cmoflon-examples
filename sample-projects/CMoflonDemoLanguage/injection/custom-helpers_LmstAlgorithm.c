@@ -46,7 +46,7 @@ static bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
           item_node->parent = NULL;
           item_node->tree = tree;
           // The owner node of the local view is in the tree from the beginning, all other nodes are not.
-          item_node->isInTree = networkaddr_equal(networkaddr_node_addr(), neighbor_node));
+          item_node->isInTree = networkaddr_equal(networkaddr_node_addr(), neighbor_node);
 
           list_add(list_tree_entries, item_node);
         }
