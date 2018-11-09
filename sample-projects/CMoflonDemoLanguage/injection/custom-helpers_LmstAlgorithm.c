@@ -86,11 +86,21 @@ static NODE_T* lmstAlgorithm_getNode(LMSTALGORITHM_T* _this) {
 static TREE_T* lmstAlgorithm_getTree(LMSTALGORITHM_T* _this) {
 	return _this->tree;
 }
+
 static list_t tree_getEntries(TREE_T* _this) {
 	return _this->entries;
 }
+
 static bool tree_isEntries(void* candidate, void* _this) {
 	return true;
+}
+
+static LINK_T* tree_getBestCandidate(TREE_T* _this) {
+  return _this->bestCandidate;
+}
+
+static void tree_setBestCandidate(TREE_T* _this, LINK_T* bestCandidate) {
+  _this->bestCandidate = bestCandidate;
 }
 
 static TREE_T* treeEntry_getTree(TREEENTRY_T* _this) {
@@ -115,6 +125,7 @@ static void treeEntry_setParent(TREEENTRY_T* _this, LINK_T* value) {
 static bool treeEntry_isIsInTree(TREEENTRY_T* _this) {
 	return _this->isInTree;
 }
+
 static void treeEntry_setIsInTree(TREEENTRY_T* _this, EBoolean value) {
 	_this->isInTree = value;
 }
