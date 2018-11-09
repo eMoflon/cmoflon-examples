@@ -1,5 +1,7 @@
 LIST(list_tree_entries);
 
+const char* LMST_ERROR_PREFIX = "ERROR[topologycontrol-lmst]: ";
+
 /**
  * Initializes the auxiliary data structures required by LMST
  */
@@ -9,7 +11,7 @@ static bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
    */
   TREE_T* tree = (TREE_T*) malloc(sizeof(TREE_T));
   if (tree == NULL) {
-    printf("ERROR[topologycontrol-lmst]: Could not allocate memory for tree\n");
+    printf("%sCould not allocate memory for tree\n", LMST_ERROR_PREFIX);
     return false;
   }
   tree->algo = this;
@@ -39,7 +41,7 @@ static bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
       if (!found) {
         item_node=(TREEENTRY_T*)malloc(sizeof(TREEENTRY_T));
         if (item_node == NULL) {
-          printf("ERROR[topologycontrol-lmst]: node list is full (%s:%d)\n", __FILE__, __LINE__);
+          printf("%scannot allocate memory for tree entry num. %d\n", LMST_ERROR_PREFIX, list_length(list_tree_entries));
           return false;
         } else {
           item_node->node = neighbor_node;
@@ -53,6 +55,8 @@ static bool lmstAlgorithm_init(LMSTALGORITHM_T* this) {
       }
     }
   }
+  const unsigned int treeSize = sizeof(TREE_T) + list_length(list_tree_entries) * sizeof(TREEENTRY_T);
+  printf("[topologycontrol-lmst] void*/TREE_T/TREEENTRY_T/tree object size: %d/%d/%d/%d Byte\n", sizeof(void *), sizeof(TREE_T), sizeof(TREEENTRY_T), treeSize);
   tree->entries = list_tree_entries;
   this->tree = tree;
   return true;
