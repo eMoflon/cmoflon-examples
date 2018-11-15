@@ -12,10 +12,7 @@ static EBoolean lStarKtcAlgorithm_evaluateHopcountConstraint(EInt hopCount1,
 		return false;
 	bool result = true;
 	result &= (!(hopCount1 == hopCount2) || true);
-	result &= (!(hopCount1 > hopCount2)
-			|| ((hopCount3 + 1) * 1.0 / max(1, hopCount1) < stretchFactor));
-	result &= (!(hopCount1 < hopCount2)
-			|| ((hopCount3 + 1) * 1.0 / max(1, hopCount2) < stretchFactor));
+	result &= (!(hopCount1 != hopCount2) || ((hopCount3 + 1) * 1.0 / max(hopCount1, hopCount2) < stretchFactor));
 	return result;
 }
 
