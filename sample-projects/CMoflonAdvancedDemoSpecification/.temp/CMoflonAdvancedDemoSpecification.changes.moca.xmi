@@ -1,0 +1,65 @@
+<MocaTree:Node xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MocaTree="platform:/plugin/MocaTree/model/MocaTree.ecore">
+  <children name="changesTree" index="0" xsi:type="MocaTree:Node">
+    <children name="EPackage" index="0" xsi:type="MocaTree:Node">
+      <children name="classes" index="0" xsi:type="MocaTree:Node">
+        <children name="EClass" index="0" xsi:type="MocaTree:Node">
+          <attribute name="name" value="Node" index="0" />
+          <attribute name="previousName" value="Node" index="1" />
+          <attribute name="packageName" value="CMoflonAdvancedDemo" index="2" />
+          <attribute name="projectName" value="CMoflonAdvancedDemo" index="3" />
+          <attribute name="baseClasses" value="" index="4" />
+        </children>
+        <children name="EClass" index="1" xsi:type="MocaTree:Node">
+          <attribute name="name" value="Link" index="0" />
+          <attribute name="previousName" value="Link" index="1" />
+          <attribute name="packageName" value="CMoflonAdvancedDemo" index="2" />
+          <attribute name="projectName" value="CMoflonAdvancedDemo" index="3" />
+          <attribute name="baseClasses" value="" index="4" />
+        </children>
+        <children name="EClass" index="2" xsi:type="MocaTree:Node">
+          <attribute name="name" value="TopologyControlAlgorithm" index="0" />
+          <attribute name="previousName" value="TopologyControlAlgorithm" index="1" />
+          <attribute name="packageName" value="cMoflonTopologyControl" index="2" />
+          <attribute name="projectName" value="cMoflonTopologyControl" index="3" />
+          <attribute name="baseClasses" value="" index="4" />
+        </children>
+        <children name="EClass" index="3" xsi:type="MocaTree:Node">
+          <attribute name="name" value="MyTopologyControlAlgorithm" index="0" />
+          <attribute name="previousName" value="MyTopologyControlAlgorithm" index="1" />
+          <attribute name="packageName" value="CMoflonAdvancedDemo" index="2" />
+          <attribute name="projectName" value="CMoflonAdvancedDemo" index="3" />
+          <attribute name="baseClasses" value="{8358E4B5-CBF6-4551-96F5-E1E8BCF85793} " index="4" />
+        </children>
+        <children name="EClass" index="4" xsi:type="MocaTree:Node">
+          <attribute name="name" value="LinkHandle" index="0" />
+          <attribute name="previousName" value="LinkHandle" index="1" />
+          <attribute name="packageName" value="CMoflonAdvancedDemo" index="2" />
+          <attribute name="projectName" value="CMoflonAdvancedDemo" index="3" />
+          <attribute name="baseClasses" value="" index="4" />
+        </children>
+        <children name="EClass" index="5" xsi:type="MocaTree:Node">
+          <attribute name="name" value="LinkContainer" index="0" />
+          <attribute name="previousName" value="LinkContainer" index="1" />
+          <attribute name="packageName" value="CMoflonAdvancedDemo" index="2" />
+          <attribute name="projectName" value="CMoflonAdvancedDemo" index="3" />
+          <attribute name="baseClasses" value="" index="4" />
+        </children>
+      </children>
+      <children name="packages" index="1" xsi:type="MocaTree:Node" />
+      <attribute name="guid" value="{4757CFB2-635F-4848-B9BC-09E3FD94628C}" index="0" />
+      <attribute name="Moflon::Name" value="CMoflonAdvancedDemo" index="1" />
+      <attribute name="Moflon::NsPrefix" value="CMoflonAdvancedDemo" index="2" />
+      <attribute name="Moflon::NsUri" value="platform:/plugin/CMoflonAdvancedDemo/model/CMoflonAdvancedDemo.ecore" index="3" />
+      <attribute name="Moflon::PluginID" value="CMoflonAdvancedDemo" index="4" />
+      <attribute name="Moflon::Export" value="true" index="5" />
+      <attribute name="Moflon::Validated" value="false" index="6" />
+      <attribute name="Moflon::WorkingSet" value="cMoflon" index="7" />
+      <attribute name="Changes::Name" value="CMoflonAdvancedDemo" index="8" />
+      <attribute name="Changes::PreviousName" value="CMoflonAdvancedDemo" index="9" />
+      <attribute name="Changes::PackageName" value="CMoflonAdvancedDemo" index="10" />
+      <attribute name="Changes::ProjectName" value="CMoflonAdvancedDemo" index="11" />
+      <attribute name="Changes::IsTLP" value="true" index="12" />
+      <attribute name="Moflon::Changes" value="true" index="13" />
+    </children>
+  </children>
+</MocaTree:Node>
